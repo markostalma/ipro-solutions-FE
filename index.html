@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>iPro Solutions - Frontend test</title>
+    <link rel="shortcut icon" href="assets/img/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-resource.min.js"></script>
+    <script src="./app.js"></script>
+</head>
+
+<body ng-app="iproApp">
+
+    <!-- Jumbotron Header -->
+    <header>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">iPro Solutions Ltd</h1>
+                <hr class="my-4">
+                <p class="lead">This is test App for Frontend Developer postion in iPro Solutions Ltd.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Collapse Button Section -->
+    <section class="collapse-buttons">
+        <div class="container">
+            <div class="row justify-content-center">
+                <p class="lead text-center">Click on buttons below to show / hide Offers or Subscriptions Data</p>
+            </div>
+            <div class="row justify-content-center">
+                <button class="btn btn-primary btn-offers collapsed" type="button" data-toggle="collapse" data-target="#collapseOffers" aria-expanded="false" aria-controls="collapseOffers"></button>
+                <button class="btn btn-danger btn-subs collapsed" type="button" data-toggle="collapse" data-target="#collapseSubs" aria-expanded="false" aria-controls="collapseSubs"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accordion API Data Section -->
+    <section class="accordion accordion-data" id="accordionData">
+        <div class="container">
+            <div class="row justify-content-center" id="offers-data" ng-controller="offersController">
+                <div class="col-12 collapse show multi-collapse" id="collapseOffers" data-parent="#accordionData">
+                    <h4 class="lead"><strong>Offers:</strong></h4>
+                    <hr class="my-4">
+                    <div class="row justify-content-center pt-5" ng-show="loading">
+                        <div class="spinner-border text-secondary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                <div class="row">
+                    <!-- Offers Data Part -->
+                    <div class="col-lg-6 col-sm-12" ng-repeat="offer in offers">
+                        <div class="card text-white bg-primary">
+                            <div class="card-header">
+                                <h5 class="lead">ID: <strong>{{offer.id}}</strong></h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Name: <strong>{{offer.name}}</strong></p>
+                                <div class="contract-part">
+                                    <p class="card-title">Contract:</p>
+                                    <p class="card-text">Start Date: <strong>{{offer.contractStartDate}};</strong></p>
+                                    <p class="card-text">End Date: <strong>{{offer.contractEndDate}};</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center" id="subs-data" ng-controller="subsController">
+            <div class="col-12 collapse multi-collapse" id="collapseSubs" data-parent="#accordionData">
+                <h4 class="lead"><strong>Subscriptions:</strong></h4>
+                <hr class="my-4">
+                <div class="row">
+                    <!-- Subscriptions API Part -->
+                    <div class="col-lg-6 col-sm-12" ng-repeat="sub in subs">
+                        <div class="card text-white bg-danger">
+                            <div class="card-header">
+                                <h5 class="lead">ID: <strong>{{sub.id}}</strong></h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Name: <strong>{{sub.name}}</strong></p>
+                                <p class="card-text">Type: <strong>{{sub.type}}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer fixed-bottom">
+        <div class="container">
+            <div class="row justify-content-center">
+                <img class="img-fluid" src="./assets/img/ipro-logo.png" alt="ipro-solution footer-logo">
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <p class="lead text-center pt-2">© Copyright. All rights reserved. iPro Solutions Ltd</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="./services/offerService.js"></script>
+    <script src="./services/subService.js"></script>
+    <script src="./controllers/offersController.js"></script>
+    <script src="./controllers/subsController.js"></script>
+</body>
+
+</html>
